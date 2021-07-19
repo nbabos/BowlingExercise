@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace BowlingScoringApplication
 {
-    public partial class Form1 : Form
+    public partial class ScoreSheetForm : Form
     {
         #region Fields
         int ColumnHeaderHeight = 60;
@@ -21,7 +21,7 @@ namespace BowlingScoringApplication
         #endregion
 
         #region Constructors
-        public Form1()
+        public ScoreSheetForm()
         {
             InitializeComponent();
             LoadRecords();
@@ -33,6 +33,9 @@ namespace BowlingScoringApplication
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// LoadRecords should be called after the component is initialized to programattically instantiate and position the Record Headers and generate a single record.
+        /// </summary>
         private void LoadRecords()
         {
             LeftBound = (pnlBody.Width - (ColumnHeaderWidth * GameManager.FRAMESPERGAME)) / 2;
@@ -45,11 +48,16 @@ namespace BowlingScoringApplication
             }
 
             AddRecord(0);
+            ucInputInstruction.SetScoreSheetForm(this);
+            ucInputInstruction.UpdateInstructions(recordControls[0], 0, 0, '-', true);
         }
-
+        /// <summary>
+        /// AddRecprd adds a new Player's Scoresheet record.
+        /// </summary>
+        /// <param name="RecordIndex"></param>
         private void AddRecord(int RecordIndex)
         {
-            RecordControl recordControl = new RecordControl(RecordIndex);
+            RecordControl recordControl = new RecordControl(RecordIndex, ucInputInstruction);
             recordControl.Top = (TopStart + ColumnHeaderHeight) + (recordControl.Height * RecordIndex);
             recordControl.Left = LeftBound;
             pnlBody.Controls.Add(recordControl);
@@ -58,7 +66,9 @@ namespace BowlingScoringApplication
             AdjustButtons();
             recordControl.Focus();
         }
-
+        /// <summary>
+        /// AdjustButtons repositions the add and remove buttons to the bottom of Records. Hide them if their functionality isn't applicable.
+        /// </summary>
         private void AdjustButtons()
         {
             int RecordBottom = TopStart + ColumnHeaderHeight;
@@ -84,9 +94,10 @@ namespace BowlingScoringApplication
             {
                 btnRemove.Visible = false;
             }
-            
         }
-
+        /// <summary>
+        /// RemoveRecord removes a Player's record.
+        /// </summary>
         private void RemoveRecord()
         {
             RecordControl recordControl = recordControls[recordControls.Count - 1];
@@ -96,6 +107,10 @@ namespace BowlingScoringApplication
             AdjustButtons();
         }
 
+        /// <summary>
+        /// Add header configures the record header for the scoresheet.
+        /// </summary>
+        /// <param name="RecordIndex"></param>
         private void AddHeader(int RecordIndex)
         {
             Label lblFrameNumber = new Label();
@@ -111,36 +126,39 @@ namespace BowlingScoringApplication
             lblFrameNumber.TextAlign = ContentAlignment.MiddleCenter;
             pnlBody.Controls.Add(lblFrameNumber);
         }
-
-        public static void ShowInstructions()
+        /// <summary>
+        /// Adjust instructions sets the positions of the Instructions so that it's in line with the active record.
+        /// </summary>
+        /// <param name="RecordControl"></param>
+        public void AdjustInstructions(RecordControl RecordControl)
         {
-            
+            ucInputInstruction.Top = RecordControl.Top - 32;
+            ucInputInstruction.Left = RecordControl.Right;
         }
 
-        private void ShowInstruction(RecordControl RecordControl)
-        {
-            ucInputInstruction.Visible = true;
-        }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            AddRecord(recordControls.Count);
-        }
         #endregion
 
-        private void pbMinimize_Click(object sender, EventArgs e)
+        #region Events
+        private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void pbExit_Click(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            AddRecord(recordControls.Count);
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
             RemoveRecord();
         }
+        #endregion
+
     }
 }

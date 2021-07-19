@@ -1,7 +1,7 @@
 ﻿
 namespace BowlingScoringApplication
 {
-    partial class Form1
+    partial class ScoreSheetForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,50 +30,69 @@ namespace BowlingScoringApplication
         private void InitializeComponent()
         {
             this.pnlHead = new System.Windows.Forms.Panel();
-            this.pbExit = new System.Windows.Forms.PictureBox();
-            this.pbMinimize = new System.Windows.Forms.PictureBox();
+            this.pnlToolbar = new System.Windows.Forms.Panel();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.pnlBody = new System.Windows.Forms.Panel();
             this.ucInputInstruction = new BowlingScoringApplication.InputInstructionControl();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.pnlHead.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbExit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMinimize)).BeginInit();
+            this.pnlToolbar.SuspendLayout();
             this.pnlBody.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHead
             // 
             this.pnlHead.BackgroundImage = global::BowlingScoringApplication.Properties.Resources.ScorecardHeader;
-            this.pnlHead.Controls.Add(this.pbExit);
-            this.pnlHead.Controls.Add(this.pbMinimize);
+            this.pnlHead.Controls.Add(this.pnlToolbar);
             this.pnlHead.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHead.Location = new System.Drawing.Point(0, 0);
             this.pnlHead.Name = "pnlHead";
             this.pnlHead.Size = new System.Drawing.Size(1582, 240);
             this.pnlHead.TabIndex = 0;
             // 
-            // pbExit
+            // pnlToolbar
             // 
-            this.pbExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(209)))), ((int)(((byte)(181)))));
-            this.pbExit.Image = global::BowlingScoringApplication.Properties.Resources.Icon_Exit;
-            this.pbExit.Location = new System.Drawing.Point(1547, 3);
-            this.pbExit.Name = "pbExit";
-            this.pbExit.Size = new System.Drawing.Size(32, 32);
-            this.pbExit.TabIndex = 1;
-            this.pbExit.TabStop = false;
-            this.pbExit.Click += new System.EventHandler(this.pbExit_Click);
+            this.pnlToolbar.BackColor = System.Drawing.Color.Transparent;
+            this.pnlToolbar.Controls.Add(this.btnMinimize);
+            this.pnlToolbar.Controls.Add(this.btnExit);
+            this.pnlToolbar.Location = new System.Drawing.Point(1499, 3);
+            this.pnlToolbar.Name = "pnlToolbar";
+            this.pnlToolbar.Size = new System.Drawing.Size(80, 44);
+            this.pnlToolbar.TabIndex = 3;
             // 
-            // pbMinimize
+            // btnMinimize
             // 
-            this.pbMinimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(209)))), ((int)(((byte)(181)))));
-            this.pbMinimize.Image = global::BowlingScoringApplication.Properties.Resources.Icon_Minimize;
-            this.pbMinimize.Location = new System.Drawing.Point(1511, 3);
-            this.pbMinimize.Name = "pbMinimize";
-            this.pbMinimize.Size = new System.Drawing.Size(32, 32);
-            this.pbMinimize.TabIndex = 0;
-            this.pbMinimize.TabStop = false;
-            this.pbMinimize.Click += new System.EventHandler(this.pbMinimize_Click);
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(183)))), ((int)(((byte)(164)))));
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnMinimize.ForeColor = System.Drawing.Color.White;
+            this.btnMinimize.Image = global::BowlingScoringApplication.Properties.Resources.Icon_Minimize;
+            this.btnMinimize.Location = new System.Drawing.Point(3, 3);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(32, 32);
+            this.btnMinimize.TabIndex = 4;
+            this.btnMinimize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(183)))), ((int)(((byte)(164)))));
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Image = global::BowlingScoringApplication.Properties.Resources.Icon_Exit;
+            this.btnExit.Location = new System.Drawing.Point(45, 3);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(32, 32);
+            this.btnExit.TabIndex = 3;
+            this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // pnlBody
             // 
@@ -88,9 +107,12 @@ namespace BowlingScoringApplication
             // 
             // ucInputInstruction
             // 
-            this.ucInputInstruction.Location = new System.Drawing.Point(153, 520);
+            this.ucInputInstruction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(95)))), ((int)(((byte)(114)))));
+            this.ucInputInstruction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucInputInstruction.ClosedManually = false;
+            this.ucInputInstruction.Location = new System.Drawing.Point(712, 498);
             this.ucInputInstruction.Name = "ucInputInstruction";
-            this.ucInputInstruction.Size = new System.Drawing.Size(1200, 40);
+            this.ucInputInstruction.Size = new System.Drawing.Size(132, 152);
             this.ucInputInstruction.TabIndex = 2;
             // 
             // btnRemove
@@ -127,7 +149,7 @@ namespace BowlingScoringApplication
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // Form1
+            // ScoreSheetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -136,12 +158,11 @@ namespace BowlingScoringApplication
             this.Controls.Add(this.pnlBody);
             this.Controls.Add(this.pnlHead);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "ScoreSheetForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Scorecard";
             this.pnlHead.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbExit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMinimize)).EndInit();
+            this.pnlToolbar.ResumeLayout(false);
             this.pnlBody.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -152,10 +173,11 @@ namespace BowlingScoringApplication
         private System.Windows.Forms.Panel pnlHead;
         private System.Windows.Forms.Panel pnlBody;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.PictureBox pbExit;
-        private System.Windows.Forms.PictureBox pbMinimize;
         private System.Windows.Forms.Button btnRemove;
         private InputInstructionControl ucInputInstruction;
+        private System.Windows.Forms.Panel pnlToolbar;
+        private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.Button btnExit;
     }
 }
 
