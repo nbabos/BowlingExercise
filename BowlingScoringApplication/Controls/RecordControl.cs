@@ -140,6 +140,7 @@ namespace BowlingScoringApplication
             for (int i = 0; i < GameManager.FRAMESPERGAME; i++)
             {
                 FrameControl frameControl = new FrameControl(this, i + 1, ucInputInstructions);
+                frameControl.Size = ThemeManager.FrameControlSize;
                 frameControl.Left = frameControl.Width * i;
                 frameControl.BackColor = ThemeManager.RowColors[RecordID % ThemeManager.RowColors.Length];
                 if (i > 0)

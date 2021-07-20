@@ -51,14 +51,12 @@ namespace BowlingScoringApplication
             //Textboxes
 
             int shotOffset = FrameNumber < GameManager.FRAMESPERGAME ? 1 : 0;
-            int textBoxWidth = this.Width / 3;
             Font font = new Font(FontFamily.GenericSansSerif, 20);
 
             for (int i = 0; i < ShotsPerFrame; i++)
             {
                 TextBox textBox = new TextBox();
-                textBox.Width = textBoxWidth;
-                textBox.Height = textBoxWidth;
+                textBox.Size = ThemeManager.FrameTextBoxSize;
                 textBox.Left = textBox.Width * (i + shotOffset);
                 textBox.BorderStyle = BorderStyle.FixedSingle;
                 textBox.Font = font;

@@ -13,8 +13,6 @@ namespace BowlingScoringApplication
     public partial class ScoreSheetForm : Form
     {
         #region Fields
-        int ColumnHeaderHeight = 60;
-        int ColumnHeaderWidth = 120;
         int TopStart = 20;
         int LeftBound = 0;
         List<RecordControl> recordControls = new List<RecordControl>();
@@ -46,7 +44,7 @@ namespace BowlingScoringApplication
         /// </summary>
         private void LoadRecords()
         {
-            LeftBound = (pnlBody.Width - (ColumnHeaderWidth * GameManager.FRAMESPERGAME)) / 2;
+            LeftBound = (pnlBody.Width - (ThemeManager.FrameControlSize.Width * GameManager.FRAMESPERGAME)) / 2;
             pnlBody.BackColor = ThemeManager.BodyColor;
             pnlHead.BackColor = ThemeManager.HeaderColor;
 
@@ -66,7 +64,7 @@ namespace BowlingScoringApplication
         private void AddRecord(int RecordIndex)
         {
             RecordControl recordControl = new RecordControl(RecordIndex, ucInputInstruction);
-            recordControl.Top = (TopStart + ColumnHeaderHeight) + (recordControl.Height * RecordIndex);
+            recordControl.Top = (TopStart + ThemeManager.FrameHeaderSize.Height) + (recordControl.Height * RecordIndex);
             recordControl.Left = LeftBound;
             pnlBody.Controls.Add(recordControl);
             recordControls.Add(recordControl);
@@ -83,7 +81,7 @@ namespace BowlingScoringApplication
         /// </summary>
         private void AdjustAddRemoveButtons()
         {
-            int RecordBottom = TopStart + ColumnHeaderHeight;
+            int RecordBottom = TopStart + ThemeManager.FrameHeaderSize.Height;
 
             if (recordControls.Count > 0)
             {
@@ -94,7 +92,7 @@ namespace BowlingScoringApplication
             btnAdd.Left = LeftBound;
 
             btnRemove.Top = Top;
-            btnRemove.Left = LeftBound + (ColumnHeaderWidth * GameManager.FRAMESPERGAME) - btnRemove.Width;
+            btnRemove.Left = LeftBound + (ThemeManager.FrameControlSize.Width * GameManager.FRAMESPERGAME) - btnRemove.Width;
 
             btnAdd.Visible = true;
             btnRemove.Visible = true;
@@ -137,11 +135,11 @@ namespace BowlingScoringApplication
             Label lblFrameNumber = new Label();
             lblFrameNumber.Text = (RecordIndex + 1).ToString();
             lblFrameNumber.AutoSize = false;
-            lblFrameNumber.Size = new Size(ColumnHeaderWidth, ColumnHeaderHeight);
+            lblFrameNumber.Size = ThemeManager.FrameHeaderSize;
             lblFrameNumber.Top = TopStart;
             lblFrameNumber.Left = LeftBound + (RecordIndex * lblFrameNumber.Width);
             lblFrameNumber.BorderStyle = BorderStyle.FixedSingle;
-            lblFrameNumber.BackColor = ThemeManager.ColumnHeadColor;
+            lblFrameNumber.BackColor = ThemeManager.FrameHeaderColor;
             lblFrameNumber.ForeColor = Color.White;
             lblFrameNumber.Font = new Font(FontFamily.GenericSansSerif, 20, FontStyle.Bold);
             lblFrameNumber.TextAlign = ContentAlignment.MiddleCenter;
