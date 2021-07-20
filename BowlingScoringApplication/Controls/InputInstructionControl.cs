@@ -20,11 +20,14 @@ namespace BowlingScoringApplication
         /// </summary>
         public bool ClosedManually { get; set; }
         ScoreSheetForm scoreSheetForm;
+        int DefaultWidth = 128;
+        int DefaultHeight = 160;
         #endregion
         #region Constructors
         public InputInstructionControl()
         {
             InitializeComponent();
+            btnHelp.Size = btnClose.Size;
         }
         #endregion
 
@@ -33,8 +36,7 @@ namespace BowlingScoringApplication
         {
             if (ForceOpen || !ClosedManually) //Only show if the scorekeeper did not close the instructions manually or an invalid shot was entered.
             {
-                this.Visible = true;
-                ClosedManually = false;
+                Open();
                 char[] validChars = GameManager.GetValidScoreChars(FrameNumber, ShotIndex, PrevShotChar);
                 string Instructions = "";
                 for (int i = 0; i < validChars.Length; i++)
@@ -51,13 +53,42 @@ namespace BowlingScoringApplication
             scoreSheetForm = ScoreSheetForm;
         }
         #endregion
-
-        #region Events
-        private void btnClose_Click(object sender, EventArgs e)
+        #region Private Methods
+        private void Open()
         {
-            this.Visible = false;
+            this.Size = new Size(DefaultWidth, DefaultHeight);
+            ClosedManually = false;
+
+            btnClose.Visible = true;
+            lblHeader.Visible = true;
+            lblInstruction.Visible = true;
+            //pnlHead.Visible = true;
+            btnHelp.Visible = false;
+        }
+        private void Close()
+        {
+            this.Size = btnHelp.Size;
             ClosedManually = true;
+
+            btnClose.Visible = false;
+            lblHeader.Visible = false;
+            lblInstruction.Visible = false;
+            //pnlHead.Visible = true;
+            btnHelp.Visible = true;
         }
         #endregion
+
+        #region Events
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            Open();
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        #endregion
+
+        
     }
 }

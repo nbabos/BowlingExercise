@@ -29,7 +29,15 @@ namespace BowlingScoringApplication
         #endregion
 
         #region Public Methods
-
+        /// <summary>
+        /// Adjust instructions sets the positions of the Instructions so that it's in line with the active record.
+        /// </summary>
+        /// <param name="RecordControl"></param>
+        public void AdjustInstructions(RecordControl RecordControl)
+        {
+            ucInputInstruction.Top = RecordControl.Top;
+            ucInputInstruction.Left = RecordControl.Right;
+        }
         #endregion
 
         #region Private Methods
@@ -63,13 +71,17 @@ namespace BowlingScoringApplication
             pnlBody.Controls.Add(recordControl);
             recordControls.Add(recordControl);
 
-            AdjustButtons();
+            AdjustAddRemoveButtons();
             recordControl.Focus();
+            if (!ucInputInstruction.Visible)
+            {
+                ucInputInstruction.Visible = true;
+            }
         }
         /// <summary>
         /// AdjustButtons repositions the add and remove buttons to the bottom of Records. Hide them if their functionality isn't applicable.
         /// </summary>
-        private void AdjustButtons()
+        private void AdjustAddRemoveButtons()
         {
             int RecordBottom = TopStart + ColumnHeaderHeight;
 
@@ -104,7 +116,16 @@ namespace BowlingScoringApplication
             pnlBody.Controls.Remove(recordControl);
             recordControls.Remove(recordControl);
 
-            AdjustButtons();
+            AdjustAddRemoveButtons();
+            if (recordControls.Count > 0)
+            {
+                AdjustInstructions(recordControls[recordControls.Count - 1]);
+            }
+            else
+            {
+                ucInputInstruction.Visible = false;
+            }
+            
         }
 
         /// <summary>
@@ -126,17 +147,6 @@ namespace BowlingScoringApplication
             lblFrameNumber.TextAlign = ContentAlignment.MiddleCenter;
             pnlBody.Controls.Add(lblFrameNumber);
         }
-        /// <summary>
-        /// Adjust instructions sets the positions of the Instructions so that it's in line with the active record.
-        /// </summary>
-        /// <param name="RecordControl"></param>
-        public void AdjustInstructions(RecordControl RecordControl)
-        {
-            ucInputInstruction.Top = RecordControl.Top - 32;
-            ucInputInstruction.Left = RecordControl.Right;
-        }
-
-
         #endregion
 
         #region Events
@@ -159,6 +169,7 @@ namespace BowlingScoringApplication
             RemoveRecord();
         }
         #endregion
+
 
     }
 }

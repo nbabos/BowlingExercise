@@ -107,12 +107,12 @@ namespace BowlingScoringApplication
             // 
             // ucInputInstruction
             // 
-            this.ucInputInstruction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(95)))), ((int)(((byte)(114)))));
+            this.ucInputInstruction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(142)))), ((int)(((byte)(166)))));
             this.ucInputInstruction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ucInputInstruction.ClosedManually = false;
-            this.ucInputInstruction.Location = new System.Drawing.Point(712, 498);
+            this.ucInputInstruction.Location = new System.Drawing.Point(699, 471);
             this.ucInputInstruction.Name = "ucInputInstruction";
-            this.ucInputInstruction.Size = new System.Drawing.Size(132, 152);
+            this.ucInputInstruction.Size = new System.Drawing.Size(120, 180);
             this.ucInputInstruction.TabIndex = 2;
             // 
             // btnRemove
@@ -174,10 +174,10 @@ namespace BowlingScoringApplication
         private System.Windows.Forms.Panel pnlBody;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRemove;
-        private InputInstructionControl ucInputInstruction;
         private System.Windows.Forms.Panel pnlToolbar;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnExit;
+        private InputInstructionControl ucInputInstruction;
     }
 }
 
