@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace BowlingScoringApplication
 {
     /// <summary>
-    /// FrameControl is a user control that handles shot input validation, entry, and storage.
+    /// A user control that handles shot input validation, entry, and storage.
     /// </summary>
     public partial class FrameControl : UserControl
     {
@@ -22,7 +22,7 @@ namespace BowlingScoringApplication
         public int ShotsPerFrame { get; private set; }
         List<TextBox> textBoxes = new List<TextBox>();
         public char[] ShotChars { get => GetShotChars(); }
-        
+
         InputInstructionControl ucInputInstructions;
         #endregion
 
@@ -40,11 +40,40 @@ namespace BowlingScoringApplication
         #endregion
 
         #region Public Methods
+        public bool IsFrameCompleted()
+        {
+            bool output = true;
+
+            for (int i = 0; i < textBoxes.Count; i++)
+            {
+                if (string.IsNullOrEmpty(textBoxes[i].Text))
+                {
+                    if (i < ShotsPerFrame - 1)
+                    {
+                        output = false;
+                    }
+                    else if (FrameNumber == GameManager.FRAMESPERGAME)
+                    {
+                        if (GameManager.ScoreLegendDict[GetPreviousShotChar(i)] < 10)
+                        {
+                            output = false;
+                        }
+                    }
+                    else if (GetPreviousShotChar(i) != 'X')
+                    {
+                        output = false;
+                    }
+                }
+
+            }
+
+            return output;
+        }
         #endregion
 
         #region Private Methods
         /// <summary>
-        /// LoadControls should be called after the component is initialized to programattically instantiate and position the textboxes in each frame.
+        /// Should be called after the component is initialized to programattically instantiate and position the textboxes in each frame.
         /// </summary>
         private void LoadControls()
         {
@@ -72,9 +101,9 @@ namespace BowlingScoringApplication
             EnableTextBoxes();
         }
 
-        
+
         /// <summary>
-        /// ReplaceEntry ensure consistency for char representation of spares (/) and misses (-) while maintaing intuitive input of the number of pins hit or an entry of '0'.
+        /// Ensures consistency for char representation of spares (/) and misses (-) while maintaing intuitive input of the number of pins hit or an entry of '0'.
         /// </summary>
         /// <param name="TxtBox"></param>
         /// <param name="ShotIndex"></param>
@@ -85,14 +114,14 @@ namespace BowlingScoringApplication
             {
                 char ShotChar = char.Parse(TxtBox.Text);
                 char PrevShotChar = ShotChars[ShotIndex - 1];
-                if (GameManager.ScoreLegendDict[ShotChar] + GameManager.ScoreLegendDict[PrevShotChar] == GameManager.PINSPERFRAME)
+                if (GameManager.ScoreLegendDict[ShotChar] + GameManager.ScoreLegendDict[PrevShotChar] == GameManager.PINSPERFRAME && PrevShotChar != 'X')
                 {
                     TxtBox.Text = TxtBox.Text.Replace(ShotChar, '/');
                 }
             }
         }
         /// <summary>
-        /// Focus next forces focus to the next TextBox or Frame so that the scorekeeper can advance without additional clicks.
+        /// Forces focus to the next TextBox or Frame so that the scorekeeper can advance without additional clicks.
         /// </summary>
         /// <param name="shotIndex"></param>
         /// <param name="shotChar"></param>
@@ -111,7 +140,7 @@ namespace BowlingScoringApplication
             }
         }
         /// <summary>
-        /// CalculatePoints is the method used to Calculated an individual frame's points.
+        /// Calculates an individual frame's points.
         /// </summary>
         /// <param name="ShotIndex"></param>
         public void CalculatePoints(int ShotIndex)
@@ -124,11 +153,17 @@ namespace BowlingScoringApplication
             {
                 Points = GameManager.CalculateScore(FrameNumber, ShotIndex, shotChars, bonusShots);
                 PointsCalculated = true;
-                RevealScore();
+                UpdateScoreLabel();
             }
         }
+        private void ResetScore()
+        {
+            Points = 0;
+            PointsCalculated = false;
+            lblPoints.Visible = PointsCalculated;
+        }
         /// <summary>
-        /// EnableTextBoxes ensures that the textboxes are disabled if entry should not be possible due to an open 10th frame or a first frame strike in preceding frames.
+        /// Ensures that the textboxes are disabled if entry should not be possible due to an open 10th frame or a first frame strike in preceding frames.
         /// </summary>
         private void EnableTextBoxes()
         {
@@ -156,7 +191,7 @@ namespace BowlingScoringApplication
             }
         }
         /// <summary>
-        /// ValidateEntry determines whether the input is a valid char for the frame and shot.
+        /// Determines whether the input is a valid char for the frame and shot.
         /// </summary>
         /// <param name="TxtBox"></param>
         /// <param name="ShotIndex"></param>
@@ -178,15 +213,15 @@ namespace BowlingScoringApplication
             return isValid;
         }
         /// <summary>
-        /// RevealScore keeps the score hidden until the score has been calculated for the Frame and its dependencies.
+        /// Keeps the score hidden until the score has been calculated for the Frame and its dependencies.
         /// </summary>
-        private void RevealScore()
+        private void UpdateScoreLabel()
         {
             lblPoints.Text = ParentRecordControl.GetCumulativePoints(FrameNumber).ToString();
             lblPoints.Visible = PointsCalculated;
         }
         /// <summary>
-        /// GetShotChars returns all shots taken in the frame. Attention: A strike in any frame other than the last will only have a single char for the strike.
+        /// Returns all shots taken in the frame. Attention: A strike in any frame other than the last will only have a single char for the strike.
         /// </summary>
         /// <returns>char[] of chars representing the shots taken.</returns>
         private char[] GetShotChars()
@@ -205,7 +240,7 @@ namespace BowlingScoringApplication
             return chars.ToArray();
         }
         /// <summary>
-        /// ShowInputInstructions opens the InputInstructions using data from the current shot.
+        /// Opens the InputInstructions using data from the current shot.
         /// </summary>
         /// <param name="ShotIndex"></param>
         /// <param name="ForceOpen"></param>
@@ -220,13 +255,27 @@ namespace BowlingScoringApplication
         /// <returns>char representing the previous shot</returns>
         private char GetPreviousShotChar(int ShotIndex)
         {
-            char prevShotChar = '-';
+            char prevShotChar = '\0';
             if (ShotIndex > 0)
             {
-                prevShotChar = char.Parse(textBoxes[ShotIndex - 1].Text);
+                char.TryParse(textBoxes[ShotIndex - 1].Text, out prevShotChar);
             }
 
             return prevShotChar;
+        }
+        /// <summary>
+        /// Clear subsequent text boxes if a change has been made to an already completed frame.
+        /// </summary>
+        /// <param name="TextBoxIndex"></param>
+        private void ClearSubsequentTextBoxes(int TextBoxIndex)
+        {
+            for (int i = TextBoxIndex + 1; i < textBoxes.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(textBoxes[i].Text))
+                {
+                    textBoxes[i].Clear();
+                }
+            }
         }
         #endregion
 
@@ -234,22 +283,27 @@ namespace BowlingScoringApplication
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
             TextBox txtBox = (TextBox)sender;
-            int shotIndex = textBoxes.IndexOf(txtBox);
-
-            if (ValidateEntry(txtBox, shotIndex))
+            if (!string.IsNullOrEmpty(txtBox.Text))
             {
-                //Determine if score can be calculated.
-                ReplaceEntry(txtBox, shotIndex);
-                char shotChar = char.Parse(txtBox.Text);
-                EnableTextBoxes();
-                FocusNext(shotIndex, shotChar);
-                ParentRecordControl.CalculateFramePoints(FrameNumber - 3, FrameNumber - 1);
-            }
-            else
-            {
-                txtBox.Clear();
-                
-                ShowInputInstructions(shotIndex, true);
+                int shotIndex = textBoxes.IndexOf(txtBox);
+                ClearSubsequentTextBoxes(shotIndex);
+                ResetScore();
+                if (ValidateEntry(txtBox, shotIndex))
+                {
+                    //Determine if score can be calculated.
+                    ReplaceEntry(txtBox, shotIndex);
+                    char shotChar = char.Parse(txtBox.Text);
+                    EnableTextBoxes();
+                    FocusNext(shotIndex, shotChar);
+                    //ParentRecordControl.CalculateFramePoints(FrameNumber - 3, FrameNumber - 1);
+                    ParentRecordControl.CalculateFramePoints(FrameNumber - 3);
+                }
+                else
+                {
+                    System.Media.SystemSounds.Beep.Play();
+                    txtBox.Clear();
+                    ShowInputInstructions(shotIndex, true);
+                }
             }
         }
         private void txtBox_GotFocus(object sender, EventArgs e)

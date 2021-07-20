@@ -12,7 +12,8 @@ namespace BowlingScoringApplication
         #region Fields
         public static Dictionary<char, int> ScoreLegendDict = new Dictionary<char, int>
         {
-            {'-', 0},
+            {'\0', 0 }, //Used to represent "previous shot" in shot 1 of a new frame.
+            {'-', 0}, //Represents a miss. Substitutes for a 0.
             {'0', 0},
             {'1', 1},
             {'2', 2},

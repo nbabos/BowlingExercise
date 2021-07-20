@@ -66,12 +66,16 @@ namespace BowlingScoringApplication
         /// <param name="FrameIndex"></param>
         public void SetFocusToNextFrame(int FrameIndex)
         {
-            if (FrameIndex < GameManager.FRAMESPERGAME)
+            for (int i = FrameIndex; i < frameControls.Count; i++)
             {
-                frameControls[FrameIndex].Enabled = true;
-                frameControls[FrameIndex].Focus();
-                
-                HighlightActiveFrame(FrameIndex);
+                if (!frameControls[i].IsFrameCompleted())
+                {
+                    frameControls[i].Enabled = true;
+                    frameControls[i].Focus();
+
+                    HighlightActiveFrame(i);
+                    return;
+                }
             }
         }
         /// <summary>
@@ -80,16 +84,13 @@ namespace BowlingScoringApplication
         /// <param name="FrameIndex"></param>
         public void HighlightActiveFrame(int FrameIndex)
         {
-            if (frameControls.Count > FrameIndex)
+            for (int i = 0; i < frameControls.Count; i++)
             {
-                if (FrameIndex > 0) //Restore previous frame's color.
-                {
-                    frameControls[FrameIndex - 1].BackColor = ThemeManager.RowColors[RecordID % ThemeManager.RowColors.Length];
-                }
-                
-                frameControls[FrameIndex].BackColor = ControlPaint.LightLight(frameControls[FrameIndex].BackColor);
+                frameControls[i].BackColor = ThemeManager.RowColors[RecordID % ThemeManager.RowColors.Length];
             }
-            
+
+            frameControls[FrameIndex].BackColor = ControlPaint.LightLight(frameControls[FrameIndex].BackColor);
+
         }
         /// <summary>
         /// CalculateFramePoints is intended to calculate the previous two frames and current frame's points in order to handle Closed Frame (strike and spare) calculations.
@@ -106,8 +107,24 @@ namespace BowlingScoringApplication
             {
                 FrameStop = GameManager.FRAMESPERGAME;
             }
-            
+
             for (int i = FrameStart; i <= FrameStop; i++)
+            {
+                char[] shotChars = frameControls[i].ShotChars;
+                if (shotChars.Length > 0)
+                {
+                    frameControls[i].CalculatePoints(shotChars.Length - 1);
+                }
+            }
+        }
+        public void CalculateFramePoints(int FrameStart)
+        {
+            if (FrameStart < 0)
+            {
+                FrameStart = 0;
+            }
+
+            for (int i = FrameStart; i < frameControls.Count; i++)
             {
                 char[] shotChars = frameControls[i].ShotChars;
                 if (shotChars.Length > 0)
