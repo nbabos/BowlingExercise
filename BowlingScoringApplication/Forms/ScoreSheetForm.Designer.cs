@@ -120,7 +120,7 @@ namespace BowlingScoringApplication
             // 
             this.btnRemove.FlatAppearance.BorderSize = 0;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnRemove.ForeColor = System.Drawing.Color.White;
             this.btnRemove.Image = global::BowlingScoringApplication.Properties.Resources.Icon_Exit;
             this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -137,7 +137,7 @@ namespace BowlingScoringApplication
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = global::BowlingScoringApplication.Properties.Resources.Icon_Plus;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

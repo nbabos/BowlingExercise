@@ -51,7 +51,7 @@ namespace BowlingScoringApplication
             //Textboxes
 
             int shotOffset = FrameNumber < GameManager.FRAMESPERGAME ? 1 : 0;
-            Font font = new Font(FontFamily.GenericSansSerif, 20);
+            Font font = ThemeManager.GeneralFont;
 
             for (int i = 0; i < ShotsPerFrame; i++)
             {

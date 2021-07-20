@@ -35,7 +35,8 @@ namespace BowlingScoringApplication
             // lblPoints
             // 
             this.lblPoints.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblPoints.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.lblPoints.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblPoints.Location = new System.Drawing.Point(0, 70);
             this.lblPoints.Name = "lblPoints";
             this.lblPoints.Size = new System.Drawing.Size(120, 50);

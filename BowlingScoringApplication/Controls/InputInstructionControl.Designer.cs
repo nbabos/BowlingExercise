@@ -72,7 +72,7 @@ namespace BowlingScoringApplication
             // 
             this.lblHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(95)))), ((int)(((byte)(114)))));
             this.lblHeader.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.lblHeader.ForeColor = System.Drawing.Color.White;
             this.lblHeader.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblHeader.Location = new System.Drawing.Point(0, 0);
@@ -87,7 +87,7 @@ namespace BowlingScoringApplication
             // 
             this.lblInstruction.BackColor = System.Drawing.Color.Transparent;
             this.lblInstruction.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblInstruction.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblInstruction.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.lblInstruction.ForeColor = System.Drawing.Color.White;
             this.lblInstruction.Location = new System.Drawing.Point(0, 50);
             this.lblInstruction.Margin = new System.Windows.Forms.Padding(0);

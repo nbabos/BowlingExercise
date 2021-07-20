@@ -141,7 +141,7 @@ namespace BowlingScoringApplication
             lblFrameNumber.BorderStyle = BorderStyle.FixedSingle;
             lblFrameNumber.BackColor = ThemeManager.FrameHeaderColor;
             lblFrameNumber.ForeColor = Color.White;
-            lblFrameNumber.Font = new Font(FontFamily.GenericSansSerif, 20, FontStyle.Bold);
+            lblFrameNumber.Font = new Font(FontFamily.GenericSansSerif, 30, FontStyle.Bold, GraphicsUnit.Pixel);
             lblFrameNumber.TextAlign = ContentAlignment.MiddleCenter;
             pnlBody.Controls.Add(lblFrameNumber);
         }

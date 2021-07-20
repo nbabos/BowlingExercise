@@ -16,5 +16,7 @@ namespace BowlingScoringApplication
         public static Size FrameControlSize = new Size(120, 120);
         public static Size FrameTextBoxSize = new Size(40, 40);
         public static Size FrameHeaderSize = new Size(FrameControlSize.Width, FrameControlSize.Width / 2);
+
+        public static Font GeneralFont = new Font(FontFamily.GenericSansSerif, 30, GraphicsUnit.Pixel);
     }
 }
