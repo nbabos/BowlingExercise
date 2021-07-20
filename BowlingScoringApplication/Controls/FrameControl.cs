@@ -250,6 +250,7 @@ namespace BowlingScoringApplication
             else
             {
                 txtBox.Clear();
+                
                 ShowInputInstructions(shotIndex, true);
             }
         }

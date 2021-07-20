@@ -45,6 +45,7 @@ namespace BowlingScoringApplication
             // pnlHead
             // 
             this.pnlHead.BackgroundImage = global::BowlingScoringApplication.Properties.Resources.ScorecardHeader;
+            this.pnlHead.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlHead.Controls.Add(this.pnlToolbar);
             this.pnlHead.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHead.Location = new System.Drawing.Point(0, 0);
