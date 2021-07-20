@@ -29,8 +29,14 @@ namespace BowlingScoringApplication
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.SuspendLayout();
+            // 
+            // RecordControl
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Name = "RecordControl";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
