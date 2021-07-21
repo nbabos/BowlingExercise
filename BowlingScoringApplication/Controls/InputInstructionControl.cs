@@ -28,6 +28,7 @@ namespace BowlingScoringApplication
         {
             InitializeComponent();
             btnHelp.Size = btnClose.Size;
+            btnHelp.BackColor = btnClose.BackColor;
         }
         #endregion
 

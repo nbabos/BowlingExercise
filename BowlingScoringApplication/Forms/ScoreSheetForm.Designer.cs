@@ -29,6 +29,7 @@ namespace BowlingScoringApplication
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScoreSheetForm));
             this.pnlHead = new System.Windows.Forms.Panel();
             this.pnlToolbar = new System.Windows.Forms.Panel();
             this.btnMinimize = new System.Windows.Forms.Button();
@@ -97,6 +98,7 @@ namespace BowlingScoringApplication
             // 
             // pnlBody
             // 
+            this.pnlBody.BackgroundImage = global::BowlingScoringApplication.Properties.Resources.BallAndPinPattern;
             this.pnlBody.Controls.Add(this.ucInputInstruction);
             this.pnlBody.Controls.Add(this.btnRemove);
             this.pnlBody.Controls.Add(this.btnAdd);
@@ -118,6 +120,7 @@ namespace BowlingScoringApplication
             // 
             // btnRemove
             // 
+            this.btnRemove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(140)))), ((int)(((byte)(142)))));
             this.btnRemove.FlatAppearance.BorderSize = 0;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
@@ -130,11 +133,12 @@ namespace BowlingScoringApplication
             this.btnRemove.TabIndex = 1;
             this.btnRemove.Text = "Remove Player";
             this.btnRemove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.UseVisualStyleBackColor = false;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
             // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(140)))), ((int)(((byte)(142)))));
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
@@ -147,7 +151,7 @@ namespace BowlingScoringApplication
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add Player";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // ScoreSheetForm
@@ -158,6 +162,7 @@ namespace BowlingScoringApplication
             this.Controls.Add(this.pnlBody);
             this.Controls.Add(this.pnlHead);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScoreSheetForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Scorecard";

@@ -37,7 +37,7 @@ namespace BowlingScoringApplication
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(95)))), ((int)(((byte)(114)))));
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(140)))), ((int)(((byte)(142)))));
             this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -70,9 +70,9 @@ namespace BowlingScoringApplication
             // 
             // lblHeader
             // 
-            this.lblHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(95)))), ((int)(((byte)(114)))));
+            this.lblHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(140)))), ((int)(((byte)(142)))));
             this.lblHeader.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.lblHeader.ForeColor = System.Drawing.Color.White;
             this.lblHeader.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblHeader.Location = new System.Drawing.Point(0, 0);
@@ -85,9 +85,9 @@ namespace BowlingScoringApplication
             // 
             // lblInstruction
             // 
-            this.lblInstruction.BackColor = System.Drawing.Color.Transparent;
+            this.lblInstruction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(183)))), ((int)(((byte)(164)))));
             this.lblInstruction.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblInstruction.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblInstruction.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.lblInstruction.ForeColor = System.Drawing.Color.White;
             this.lblInstruction.Location = new System.Drawing.Point(0, 50);
             this.lblInstruction.Margin = new System.Windows.Forms.Padding(0);
@@ -100,7 +100,7 @@ namespace BowlingScoringApplication
             // InputInstructionControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(142)))), ((int)(((byte)(166)))));
+            this.BackColor = System.Drawing.Color.Transparent;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblHeader);
