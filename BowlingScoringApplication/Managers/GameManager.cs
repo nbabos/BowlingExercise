@@ -31,6 +31,11 @@ namespace BowlingScoringApplication
         public const int PINSPERFRAME = 10;
         public const int FRAMESPERGAME = 10;
         public const int MAXPLAYERS = 4;
+        /// <summary>
+        /// Requirements state "An incomplete game is scored up to the last frame provided." While outside research shows a closed frame traditionally
+        /// may not  calculate until its bonus shot(s) are marked, this bool toggles these calculation rules.
+        /// </summary>
+        public const bool CALCULATEINCOMPLETEFRAME = false;
         #endregion
 
         #region Public Methods
@@ -128,7 +133,7 @@ namespace BowlingScoringApplication
                     additionalShotsRequired = GetBonusShotCountByChar(FrameNumber, ShotIndex, ShotsInFrame[i]);
                 }
 
-                if (BonusShots.Length >= additionalShotsRequired)
+                if (BonusShots.Length >= additionalShotsRequired || CALCULATEINCOMPLETEFRAME)
                 {
                     CanCalculate = true;
                 }
